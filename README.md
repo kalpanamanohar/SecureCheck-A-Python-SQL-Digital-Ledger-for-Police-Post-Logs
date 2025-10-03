@@ -86,6 +86,8 @@ import pandas as pd
 df = pd.read_csv("Traffic_Stops.csv")
 df.head()
 
+---
+
 ### 2. Basic Data Exploration
 ```python
 # Check missing values
