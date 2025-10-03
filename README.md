@@ -25,14 +25,10 @@ Police check posts require a centralized system for logging, tracking, and analy
 
 ---
 
-## 📂 Project Structure
+## ⚙️ Installation & Setup
 
----
-
-## 🚀 Getting Started
-
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/kalpanamanohar/secure-check.git
-cd secure-check
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/kalpanamanohar/SECURE_CHECK.git
+   cd SECURE_CHECK
 
