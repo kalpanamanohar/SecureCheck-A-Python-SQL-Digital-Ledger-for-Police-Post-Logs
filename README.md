@@ -1,9 +1,7 @@
 # 🚔 SECURE CHECK: A Python + SQL Digital Leader For Police Post Logs
 
 ## 📌 Project Overview
-Police check posts often rely on manual logging, which is slow, inconsistent, and prone to errors. **SECURE CHECK** is a digital solution that integrates **Python and SQL** to provide a centralized system for logging, tracking, and analyzing vehicle and personnel movements at security checkpoints.
-
-This project demonstrates how real-time analytics and database-driven insights can enhance law enforcement efficiency and improve public safety.
+Police check posts require a centralized system for logging, tracking, and analyzing vehicle movements. Currently, manual logging and inefficient databases slow down security processes. This project aims to build an SQL-based check post database with a Python-powered dashboard for real-time insights and alerts.
 
 ---
 
@@ -22,9 +20,19 @@ This project demonstrates how real-time analytics and database-driven insights c
   - `pandas` – data handling  
   - `numpy` – numerical computations  
   - `matplotlib` – data visualization  
-- **Database:** SQL (for structured queries and suspect detection)  
+- **Database:** MySQL (for structured queries and suspect detection)  
 - **Dataset:** Example dataset `Traffic_Stops.csv`  
 
 ---
 
 ## 📂 Project Structure
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/kalpanamanohar/secure-check.git
+cd secure-check
+
