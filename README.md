@@ -4,7 +4,11 @@
 Police check posts require a centralized system for logging, tracking, and analyzing vehicle movements. Currently, manual logging and inefficient databases slow down security processes. This project aims to build an SQL-based check post database with a Python-powered dashboard for real-time insights and alerts.
 
 ---
+![Streamlit](https://img.shields.io/badge/Framework-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![Python](https://img.shields.io/badge/Language-Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![MySQL](https://img.shields.io/badge/Database-MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
+---
 ## 🎯 Features
 - 🔹 **Real-time Logging** of vehicles and personnel at check posts.  
 - 🔹 **Automated Suspect Identification** using SQL queries.  
@@ -14,14 +18,70 @@ Police check posts require a centralized system for logging, tracking, and analy
 
 ---
 
-## 🛠️ Tech Stack
-- **Programming Language:** Python (Jupyter Notebook)  
-- **Libraries Used:**  
-  - `pandas` – data handling  
-  - `numpy` – numerical computations  
-  - `matplotlib` – data visualization  
-- **Database:** MySQL (for structured queries and suspect detection)  
-- **Dataset:** Example dataset `Traffic_Stops.csv`  
+## ⚙️ Tech Stack
+
+| Component | Technology |
+|------------|-------------|
+| 💻 **Frontend/UI** | Streamlit |
+| ⚙️ **Backend** | Python |
+| 🗄️ **Database** | MySQL |
+| 📊 **Visualization** | Plotly Express |
+| 🧮 **Data Handling** | Pandas |
+| ⏱️ **Datetime Management** | datetime |
+
+---
+## 🚨 Key Features
+
+### 🔹 1. **Introduction Page**
+> Overview of the project with visuals and highlights of its purpose.
+
+### 🔹 2. **Full Data Table**
+> Displays the **complete SQL dataset** directly from the `Traffic_Stops.digital_ledger` table.
+
+### 🔹 3. **Key Metrics Dashboard**
+> Real-time statistics and dynamic charts:
+- 🚦 Total Police Stops  
+- 🚓 Total Arrests  
+- ⚠️ Total Warnings  
+- 💊 Drug-Related Stops  
+- 🧍 Gender Distribution  
+- 📈 Monthly Trends and 📊 Hourly Heatmaps  
+
+### 🔹 4. **Advanced Insights**
+> A collection of pre-defined **SQL analytical queries** with instant visualization:
+- Arrest rate by **age**, **race**, and **gender**  
+- Night vs. Day arrest comparison  
+- Top 10 drug-related vehicles  
+- Common violations among young drivers  
+- Country-wise stop analysis  
+- Violation trends and arrest rate breakdowns  
+
+### 🔹 5. **Predictive Outcome Form**
+> Interactive Streamlit form that simulates a police stop scenario and predicts:
+- Stop description  
+- Violation type  
+- Outcome summary (Ticket, Arrest, Warning)  
+
+---
+## 🗄️ Database Schema
+The application connects to a MySQL database named `Traffic_Stops`, which contains a table called `digital_ledger`.
+
+### Table: digital_ledger
+| Column Name | Description |
+|--------------|-------------|
+| `stop_date` | Date when the traffic stop occurred |
+| `stop_time` | Time of the stop (formatted as HH:MM:SS) |
+| `driver_age` | Age of the driver involved |
+| `driver_gender` | Gender of the driver (Male/Female) |
+| `driver_race` | Race of the driver |
+| `violation` | Reason or type of traffic violation |
+| `search_conducted` | Indicates if a search was conducted (1 = Yes, 0 = No) |
+| `is_arrested` | Indicates if an arrest was made (1 = Yes, 0 = No) |
+| `drugs_related_stop` | Indicates if the stop was drug-related (1 = Yes, 0 = No) |
+| `stop_duration` | Duration category of the stop (e.g., 0-15 Min, 16-30 Min, 30+ Min) |
+| `stop_outcome` | Result of the stop (Ticket, Arrest, Warning) |
+| `country_name` | Name of the country where the stop occurred |
+| `vehicle_number` | Vehicle registration number involved in the stop |
 
 ---
 
@@ -58,13 +118,32 @@ Police check posts require a centralized system for logging, tracking, and analy
    - Provided a framework for **centralized monitoring** of all check posts.  
 
 ---
+## 📊 Visualization Types
+
+| Type | Description |
+|------|--------------|
+| 📈 **Line Chart** | Monthly traffic stop trends |
+| 🥧 **Pie Chart** | Gender distribution |
+| 📊 **Bar Chart** | Arrest & violation rates |
+| 🌡️ **Heatmap** | Stop frequency by hour & weekday |
+
+---
+
+## 🧩 How It Works
+
+1. Establishes a **secure MySQL connection** using `pymysql`.  
+2. Fetches real-time records into a **Pandas DataFrame**.  
+3. Processes and visualizes using **Plotly Express**.  
+4. Displays dynamic results through **Streamlit** pages.  
+5. Allows SQL-based deep dives through the *Advanced Insights* page.
+
+---
 
 ## ⚙️ Installation & Setup
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/kalpanamanohar/SECURE_CHECK.git
-   cd SECURE_CHECK
+# Clone the repository
+git clone https://github.com/kalpanamanohar/securecheck.git
+cd securecheck
 
 ---
 
@@ -78,40 +157,67 @@ Police check posts require a centralized system for logging, tracking, and analy
 
 Here’s how the system works step by step:
 
-### 1. Load Dataset
+---
+
 ```python
 import pandas as pd
 
+# ========================================
+# 🧩 Step 1: Load Dataset
+# ========================================
+
 # Load traffic stop records
 df = pd.read_csv("Traffic_Stops.csv")
+
+# Display first few rows
 df.head()
 
----
 
-### 2. Basic Data Exploration
-```python
+# ========================================
+# 🔍 Step 2: Basic Data Exploration
+# ========================================
+
 # Check missing values
-df.isnull().sum()
+print("Missing Values:\n", df.isnull().sum())
 
 # Summary statistics
-df.describe()
+print("\nSummary Statistics:\n", df.describe())
 
-### 3. Store & Query with SQL
+
+# ========================================
+# 🗄️ Step 3: Store & Query with SQL
+# ========================================
+
 import pymysql
-myconnection = pymysql.connect(host = '127.0.0.1',user='root',password='Mirthi@26')
-cur = myconnection.cursor()
-cur.execute("create database Traffic_Stops")
-
-# Example query:  Display Top 10 vehicle_Number involved in drug-related stops
-cur.execute("""select vehicle_number,count(*) as count from Traffic_Stops.digital_ledger
-where drugs_related_stop=TRUE
-group by vehicle_number
-order by count desc
-limit 10""")
-
-a=cur.fetchall()
 from tabulate import tabulate
-print(tabulate(a,headers=[i[0] for i in cur.description],tablefmt='mysql'))
+
+# Connect to MySQL
+myconnection = pymysql.connect(
+    host='127.0.0.1',
+    user='root',
+    password='Mirthi@26'
+)
+cur = myconnection.cursor()
+
+# Create database
+cur.execute("CREATE DATABASE IF NOT EXISTS Traffic_Stops")
+
+# Example query:
+# Display Top 10 vehicle numbers involved in drug-related stops
+query = """
+SELECT vehicle_number, COUNT(*) AS count 
+FROM Traffic_Stops.digital_ledger
+WHERE drugs_related_stop = TRUE
+GROUP BY vehicle_number
+ORDER BY count DESC
+LIMIT 10
+"""
+cur.execute(query)
+
+# Fetch and display results
+a = cur.fetchall()
+print(tabulate(a, headers=[i[0] for i in cur.description], tablefmt='mysql'))
+
 
 
 
