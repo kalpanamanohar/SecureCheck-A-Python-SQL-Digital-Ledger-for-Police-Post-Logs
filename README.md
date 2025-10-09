@@ -32,7 +32,7 @@ Police check posts need a unified, real-time digital log for tracking vehicle an
 | **Visualization**| Plotly Express     |
 | **Data Handling**| Pandas             |
 | **Datetime**     | datetime           |
-| **SQL Adapter**  | PyMySQL            |
+
 
 ---
 
@@ -113,7 +113,7 @@ Police check posts need a unified, real-time digital log for tracking vehicle an
 
 ## 🧩 How It Works
 
-1. Connects securely to MySQL (via PyMySQL).
+1. Connects securely to MySQL.
 2. Fetches real-time records into Pandas DataFrames.
 3. Generates analytics and visuals with Plotly Express.
 4. Serves the dashboard interactively through Streamlit.
