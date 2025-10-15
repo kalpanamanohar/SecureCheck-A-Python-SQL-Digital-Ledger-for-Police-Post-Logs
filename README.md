@@ -1,4 +1,4 @@
-# 🚔 SECURE CHECK: A Python + SQL Digital Leader For Police Post Logs
+# 🚔 SECURE CHECK: A Python + SQL Digital Ledger For Police Post Logs
 
 ## 📌 Project Overview
 Police check posts need a unified, real-time digital log for tracking vehicle and personnel movements. This project leverages a MySQL-backed database and a Python-powered Streamlit dashboard for instant insights, advanced analytics, and automated alerts. Data is efficiently queried via SQL and visualized with Plotly in Streamlit, delivering actionable metrics for law enforcement.
